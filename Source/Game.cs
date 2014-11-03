@@ -23,6 +23,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace ChocolateDoomLauncher
 {
@@ -306,9 +307,9 @@ namespace ChocolateDoomLauncher
                 Doom.StartInfo.Arguments = args;
                 Doom.Start();
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                // Todo
+                MessageBox.Show("Unable to run Chocolate Doom.", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
             
             System.Environment.Exit(0);            
