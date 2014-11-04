@@ -29,32 +29,12 @@ using System.IO;
 
 namespace ChocolateDoomLauncher
 {
-    public partial class ChocDoomLauncherForm : Form
+    public partial class MainForm : Form
     {
-        public ChocDoomLauncherForm()
+        public MainForm()
         {
             InitializeComponent();
-        }
-
-        private void ChocDoomLauncherForm_Load(object sender, EventArgs e)
-        {
-            string path = Properties.Settings.Default.WADPath;
-            InitWADS(System.IO.Directory.GetCurrentDirectory());
-            if (!string.IsNullOrEmpty(path))
-            {
-                InitWADS(path);
-            }            
-            EnableDemoControls();
-            InitDemoControls();
-            InitServerControls();
-
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Join", 0));
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Cooperative", 1));
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Deathmatch", 2));
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Deathmatch 2.0", 3));
-            comboBoxMultiplayerModes.SelectedIndex = Game.Multiplayer.Mode;
-            comboBoxMultiplayerModes.SelectedIndexChanged += comboBoxMultiplayerModes_SelectedIndexChanged;
-        }
+        }        
 
         private void InitWADS(string path)
         {
@@ -75,6 +55,13 @@ namespace ChocolateDoomLauncher
 
                 switch (Path.GetFileName(wad).ToLower())
                 {
+                    case "chex.wad":
+                        string dehFile = Path.ChangeExtension(wad, ".deh");
+                        if (File.Exists(dehFile))
+                        {
+                            comboBoxIWAD.Items.Add(new ListComboContent("Chex Quest", wad));
+                        }
+                        break;
                     case "doom1.wad":
                         comboBoxIWAD.Items.Add(new ListComboContent("Doom (Shareware)", wad));
                         break;
@@ -114,6 +101,13 @@ namespace ChocolateDoomLauncher
             comboBoxSkill.Items.Clear();
             switch (Path.GetFileNameWithoutExtension(Game.IWAD).ToLower())
             {
+                case "chex":
+                    comboBoxSkill.Items.Add(new ListComboIntContent("Easy does it", 1));
+                    comboBoxSkill.Items.Add(new ListComboIntContent("Not so sticky", 2));
+                    comboBoxSkill.Items.Add(new ListComboIntContent("Gobs of god", 3));
+                    comboBoxSkill.Items.Add(new ListComboIntContent("Extreme ooze", 4));
+                    comboBoxSkill.Items.Add(new ListComboIntContent("Super slimey!", 5));
+                    break;
                 case "heretic1":
                 case "heretic":
                     comboBoxSkill.Items.Add(new ListComboIntContent("Thou needeth a wet-nurse", 1));
@@ -318,7 +312,27 @@ namespace ChocolateDoomLauncher
         }        
 
         // Event handlers
-        void comboBoxIWAD_SelectedIndexChanged(object sender, EventArgs e)
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            string path = Properties.Settings.Default.WADPath;
+            InitWADS(System.IO.Directory.GetCurrentDirectory());
+            if (!string.IsNullOrEmpty(path))
+            {
+                InitWADS(path);
+            }
+            EnableDemoControls();
+            InitDemoControls();
+            InitServerControls();
+
+            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Join", 0));
+            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Cooperative", 1));
+            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Deathmatch", 2));
+            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Deathmatch 2.0", 3));
+            comboBoxMultiplayerModes.SelectedIndex = Game.Multiplayer.Mode;
+            comboBoxMultiplayerModes.SelectedIndexChanged += comboBoxMultiplayerModes_SelectedIndexChanged;
+        }
+
+        private void comboBoxIWAD_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListComboContent iwad = (ListComboContent)comboBoxIWAD.SelectedItem;
             Game.IWAD = iwad.Value;
@@ -326,7 +340,7 @@ namespace ChocolateDoomLauncher
             InitLevels();
         }
 
-        void comboBoxLevel_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (Game.Epsiodes != 0)
             {
@@ -342,14 +356,14 @@ namespace ChocolateDoomLauncher
             InitCheckBoxTitle();
         }
 
-        void comboBoxSkill_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxSkill_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListComboIntContent skill = (ListComboIntContent)comboBoxSkill.SelectedItem;
             Game.Skill = skill.Value;
             InitCheckBoxTitle();
         }
 
-        void checkBoxTitleScreen_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxTitleScreen_CheckedChanged(object sender, EventArgs e)
         {
             Game.Title = checkBoxTitleScreen.Checked;
             if (Game.Title)
@@ -366,7 +380,7 @@ namespace ChocolateDoomLauncher
             }
         }
 
-        void checkBoxMultiplayer_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxMultiplayer_CheckedChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Enabled = checkBoxMultiplayer.Checked;
             comboBoxMultiplayerModes.Enabled = Game.Multiplayer.Enabled;
@@ -375,34 +389,34 @@ namespace ChocolateDoomLauncher
             InitPlayButtonState();
         }
 
-        void comboBoxMultiplayerModes_SelectedIndexChanged(object sender, EventArgs e)
+        private void comboBoxMultiplayerModes_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListComboIntContent mode = (ListComboIntContent)comboBoxMultiplayerModes.SelectedItem;
             Game.Multiplayer.Mode = mode.Value;
             InitServerControls();
         }
 
-        void numericUpDownTime_ValueChanged(object sender, EventArgs e)
+        private void numericUpDownTime_ValueChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Time = Convert.ToInt16(numericUpDownTime.Value);
         }
 
-        void textBoxName_TextChanged(object sender, EventArgs e)
+        private void textBoxName_TextChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Name = textBoxServerName.Text;
         }
 
-        void checkBoxPrivateServer_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxPrivateServer_CheckedChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Private = checkBoxPrivateServer.Checked;
         }
 
-        void numericUpDownNodes_ValueChanged(object sender, EventArgs e)
+        private void numericUpDownNodes_ValueChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Nodes = Convert.ToInt16(numericUpDownNodes.Value);
         }
 
-        void radioButtonAutoConnect_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonAutoConnect_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonAutoConnect.Checked)
             {
@@ -411,7 +425,7 @@ namespace ChocolateDoomLauncher
             }
         }
 
-        void radioButtonLocalSearch_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonLocalSearch_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonLocalSearch.Checked)
             {
@@ -420,7 +434,7 @@ namespace ChocolateDoomLauncher
             }
         }
 
-        void radioButtonConnect_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonConnect_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButtonConnect.Checked)
             {
@@ -429,18 +443,18 @@ namespace ChocolateDoomLauncher
             }
         }
             
-        void textBoxAddress_TextChanged(object sender, EventArgs e)
+        private void textBoxAddress_TextChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Address = textBoxAddress.Text;
         }
 
-        void checkBoxTurbo_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxTurbo_CheckedChanged(object sender, EventArgs e)
         {
             Game.Turbo = checkBoxTurbo.Checked;
             numericUpDownTurbo.Enabled = Game.Turbo;
         }        
 
-        void checkBoxNoMonsters_ChckedChanged(object sender, EventArgs e)
+        private void checkBoxNoMonsters_ChckedChanged(object sender, EventArgs e)
         {
             Game.NoMonsters = checkBoxNoMonsters.Checked;
 
@@ -456,7 +470,7 @@ namespace ChocolateDoomLauncher
             }
         }
 
-        void buttonAddWADS_Clicked(object sender, EventArgs e)
+        private void buttonAddWADS_Clicked(object sender, EventArgs e)
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
 
@@ -468,29 +482,29 @@ namespace ChocolateDoomLauncher
             }
         }
 
-        void checkBoxFastMonster_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxFastMonster_CheckedChanged(object sender, EventArgs e)
         {
             Game.FastMonsters = checkBoxFastMonsters.Checked;
         }
 
-        void checkBoxRespawnMonsters_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxRespawnMonsters_CheckedChanged(object sender, EventArgs e)
         {
             Game.RespawnMonsters = checkBoxRespawnMonsters.Checked;
         }
 
-        void numericUpDownTurbo_ValueChanged(object sender, EventArgs e)
+        private void numericUpDownTurbo_ValueChanged(object sender, EventArgs e)
         {
             Game.TurboSpeed = Convert.ToInt16(numericUpDownTurbo.Value);
         }
 
-        void checkBoxDemo_CheckedChanged(object sender, EventArgs e)
+        private void checkBoxDemo_CheckedChanged(object sender, EventArgs e)
         {
             Game.Demo.Enabled = checkBoxDemo.Checked;
             EnableDemoControls();
             InitPlayButtonState();            
         }
 
-        void radioButtonPlayDemo_CheckedChanged(object sender, EventArgs e)
+        private void radioButtonPlayDemo_CheckedChanged(object sender, EventArgs e)
         {
             textBoxDemoPath.Text = "";
             if (radioButtonPlayDemo.Checked)
@@ -505,12 +519,12 @@ namespace ChocolateDoomLauncher
             InitPlayButtonState();
         }
 
-        void textBoxDemoPath_TextChanged(object sender, EventArgs e)
+        private void textBoxDemoPath_TextChanged(object sender, EventArgs e)
         {
             Game.Demo.File = textBoxDemoPath.Text;
         }
 
-        void buttonBrowseDemoFile_Clicked(object sender, EventArgs e)
+        private void buttonBrowseDemoFile_Clicked(object sender, EventArgs e)
         {
             if (Game.Demo.Play)
             {
@@ -536,12 +550,12 @@ namespace ChocolateDoomLauncher
             }
         }
 
-        void buttonExit_Clicked(object sender, EventArgs e)
+        private void buttonExit_Clicked(object sender, EventArgs e)
         {
             System.Environment.Exit(0);
         }
 
-        void buttonRun_Clicked(object sender, EventArgs e)
+        private void buttonRun_Clicked(object sender, EventArgs e)
         {
             string[] pwads = new string[listBoxWADS.SelectedItems.Count];
             for (int i = 0; i <= listBoxWADS.SelectedItems.Count - 1; i++)

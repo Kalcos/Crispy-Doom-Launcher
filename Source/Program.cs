@@ -24,7 +24,7 @@ using System.Windows.Forms;
 
 namespace ChocolateDoomLauncher
 {
-    static class ChocolateDoomLauncher
+    static class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -34,7 +34,7 @@ namespace ChocolateDoomLauncher
         {            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ChocDoomLauncherForm());
+            Application.Run(new MainForm());
         }
     }
 }

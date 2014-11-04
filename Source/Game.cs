@@ -134,6 +134,11 @@ namespace ChocolateDoomLauncher
 
                 switch (Path.GetFileName(iwad).ToLower())
                 {
+                    case "chex.wad":
+                        episodes = 1;
+                        maps = 5;
+                        bin = "chocolate-doom.exe";
+                        break;
                     case "doom1.wad":
                         episodes = 1;                        
                         maps = 9;

@@ -18,7 +18,7 @@
 
 namespace ChocolateDoomLauncher
 {
-    partial class ChocDoomLauncherForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -46,7 +46,7 @@ namespace ChocolateDoomLauncher
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChocDoomLauncherForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.groupBoxGame = new System.Windows.Forms.GroupBox();
             this.checkBoxTitleScreen = new System.Windows.Forms.CheckBox();
             this.labelLevel = new System.Windows.Forms.Label();
@@ -544,7 +544,7 @@ namespace ChocolateDoomLauncher
             this.Name = "ChocDoomLauncherForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chocalate Doom Launcher";
-            this.Load += new System.EventHandler(this.ChocDoomLauncherForm_Load);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBoxGame.ResumeLayout(false);
             this.groupBoxGame.PerformLayout();
             this.groupBoxOptions.ResumeLayout(false);

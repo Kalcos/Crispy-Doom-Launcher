@@ -1,0 +1,9 @@
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\bin\Release\chocolate-doom-launcher.exe.config
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\bin\Release\chocolate-doom-launcher.exe
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\bin\Release\chocolate-doom-launcher.pdb
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\obj\Release\ChocolateDoomLauncher.csprojResolveAssemblyReference.cache
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\obj\Release\ChocolateDoomLauncher.MainForm.resources
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\obj\Release\ChocolateDoomLauncher.Properties.Resources.resources
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\obj\Release\ChocolateDoomLauncher.csproj.GenerateResource.Cache
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\obj\Release\chocolate-doom-launcher.exe
+C:\Users\Myles\Documents\Projects\ChocolateDoomLauncher\Source\obj\Release\chocolate-doom-launcher.pdb
