@@ -59,32 +59,32 @@ namespace ChocolateDoomLauncher
                         string dehFile = Path.ChangeExtension(wad, ".deh");
                         if (File.Exists(dehFile))
                         {
-                            comboBoxIWAD.Items.Add(new ListComboContent("Chex Quest", wad));
+                            comboBoxIWAD.Items.Add(new ListContent("Chex Quest", wad));
                         }
                         break;
                     case "doom1.wad":
-                        comboBoxIWAD.Items.Add(new ListComboContent("Doom (Shareware)", wad));
+                        comboBoxIWAD.Items.Add(new ListContent("Doom (Shareware)", wad));
                         break;
                     case "doom.wad":
-                        comboBoxIWAD.Items.Add(new ListComboContent("The Ultimate Doom", wad));
+                        comboBoxIWAD.Items.Add(new ListContent("The Ultimate Doom", wad));
                         break;
                     case "doom2.wad":
-                        comboBoxIWAD.Items.Add(new ListComboContent("Doom 2: Hell on Earth", wad));
+                        comboBoxIWAD.Items.Add(new ListContent("Doom 2: Hell on Earth", wad));
                         break;
                     case "tnt.wad":
-                        comboBoxIWAD.Items.Add(new ListComboContent("Final Doom: TNT Evilution", wad));
+                        comboBoxIWAD.Items.Add(new ListContent("Final Doom: TNT Evilution", wad));
                         break;
                     case "plutonia.wad":
-                        comboBoxIWAD.Items.Add(new ListComboContent("Final Doom: The Plutonia Experiment", wad));
+                        comboBoxIWAD.Items.Add(new ListContent("Final Doom: The Plutonia Experiment", wad));
                         break;
                     case "heretic1.wad":
-                        comboBoxIWAD.Items.Add(new ListComboContent("Heretic (Shareware)", wad));
+                        comboBoxIWAD.Items.Add(new ListContent("Heretic (Shareware)", wad));
                         break;
                     case "heretic.wad":
-                        comboBoxIWAD.Items.Add(new ListComboContent("Heretic", wad));
+                        comboBoxIWAD.Items.Add(new ListContent("Heretic", wad));
                         break;
                     default:
-                        listBoxWADS.Items.Add(new ListComboContent(Path.GetFileNameWithoutExtension(wad), wad));
+                        listBoxWADS.Items.Add(new ListContent(Path.GetFileNameWithoutExtension(wad), wad));
                         break;
                 }
             }
@@ -102,26 +102,26 @@ namespace ChocolateDoomLauncher
             switch (Path.GetFileNameWithoutExtension(Game.IWAD).ToLower())
             {
                 case "chex":
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Easy does it", 1));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Not so sticky", 2));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Gobs of god", 3));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Extreme ooze", 4));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Super slimey!", 5));
+                    comboBoxSkill.Items.Add(new ListContent("Easy does it", 1));
+                    comboBoxSkill.Items.Add(new ListContent("Not so sticky", 2));
+                    comboBoxSkill.Items.Add(new ListContent("Gobs of god", 3));
+                    comboBoxSkill.Items.Add(new ListContent("Extreme ooze", 4));
+                    comboBoxSkill.Items.Add(new ListContent("Super slimey!", 5));
                     break;
                 case "heretic1":
                 case "heretic":
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Thou needeth a wet-nurse", 1));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Yellowbellies-r-us", 2));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Bringest them oneth", 3));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Thou art a smite-meister", 4));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Black plague possesses thee", 5));
+                    comboBoxSkill.Items.Add(new ListContent("Thou needeth a wet-nurse", 1));
+                    comboBoxSkill.Items.Add(new ListContent("Yellowbellies-r-us", 2));
+                    comboBoxSkill.Items.Add(new ListContent("Bringest them oneth", 3));
+                    comboBoxSkill.Items.Add(new ListContent("Thou art a smite-meister", 4));
+                    comboBoxSkill.Items.Add(new ListContent("Black plague possesses thee", 5));
                     break;
                 default:
-                    comboBoxSkill.Items.Add(new ListComboIntContent("I'm too young to die", 1));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Hey, not too rough", 2));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Hurt me plenty", 3));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Ultra-Violence", 4));
-                    comboBoxSkill.Items.Add(new ListComboIntContent("Nightmare!", 5));
+                    comboBoxSkill.Items.Add(new ListContent("I'm too young to die", 1));
+                    comboBoxSkill.Items.Add(new ListContent("Hey, not too rough", 2));
+                    comboBoxSkill.Items.Add(new ListContent("Hurt me plenty", 3));
+                    comboBoxSkill.Items.Add(new ListContent("Ultra-Violence", 4));
+                    comboBoxSkill.Items.Add(new ListContent("Nightmare!", 5));
                     break;
             }
             comboBoxSkill.SelectedIndex = Game.Skill - 1;
@@ -137,7 +137,7 @@ namespace ChocolateDoomLauncher
                 {
                     for (int m = 1; m <= Game.Maps; m++)
                     {
-                        comboBoxLevel.Items.Add(new ListComboEpisodeContent(string.Format("E{0}M{1}", e, m), e, m));
+                        comboBoxLevel.Items.Add(new ListEpisode(string.Format("E{0}M{1}", e, m), e, m));
                     }
                 }
             }
@@ -324,17 +324,17 @@ namespace ChocolateDoomLauncher
             InitDemoControls();
             InitServerControls();
 
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Join", 0));
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Cooperative", 1));
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Deathmatch", 2));
-            comboBoxMultiplayerModes.Items.Add(new ListComboIntContent("Deathmatch 2.0", 3));
+            comboBoxMultiplayerModes.Items.Add(new ListContent("Join", 0));
+            comboBoxMultiplayerModes.Items.Add(new ListContent("Cooperative", 1));
+            comboBoxMultiplayerModes.Items.Add(new ListContent("Deathmatch", 2));
+            comboBoxMultiplayerModes.Items.Add(new ListContent("Deathmatch 2.0", 3));
             comboBoxMultiplayerModes.SelectedIndex = Game.Multiplayer.Mode;
             comboBoxMultiplayerModes.SelectedIndexChanged += comboBoxMultiplayerModes_SelectedIndexChanged;
         }
 
         private void comboBoxIWAD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListComboContent iwad = (ListComboContent)comboBoxIWAD.SelectedItem;
+            ListContent iwad = (ListContent)comboBoxIWAD.SelectedItem;
             Game.IWAD = iwad.Value;
             InitSkills();
             InitLevels();
@@ -344,7 +344,7 @@ namespace ChocolateDoomLauncher
         {
             if (Game.Epsiodes != 0)
             {
-                ListComboEpisodeContent level = (ListComboEpisodeContent)comboBoxLevel.SelectedItem;
+                ListEpisode level = (ListEpisode)comboBoxLevel.SelectedItem;
                 Game.Episode = level.Episode;
                 Game.Map = level.Map;
             }
@@ -358,8 +358,8 @@ namespace ChocolateDoomLauncher
 
         private void comboBoxSkill_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListComboIntContent skill = (ListComboIntContent)comboBoxSkill.SelectedItem;
-            Game.Skill = skill.Value;
+            ListContent skill = (ListContent)comboBoxSkill.SelectedItem;
+            Game.Skill = skill.Num;
             InitCheckBoxTitle();
         }
 
@@ -391,8 +391,8 @@ namespace ChocolateDoomLauncher
 
         private void comboBoxMultiplayerModes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ListComboIntContent mode = (ListComboIntContent)comboBoxMultiplayerModes.SelectedItem;
-            Game.Multiplayer.Mode = mode.Value;
+            ListContent mode = (ListContent)comboBoxMultiplayerModes.SelectedItem;
+            Game.Multiplayer.Mode = mode.Num;
             InitServerControls();
         }
 
@@ -560,63 +560,81 @@ namespace ChocolateDoomLauncher
             string[] pwads = new string[listBoxWADS.SelectedItems.Count];
             for (int i = 0; i <= listBoxWADS.SelectedItems.Count - 1; i++)
             {
-                ListComboContent pwad = (ListComboContent)listBoxWADS.SelectedItems[i];
+                ListContent pwad = (ListContent)listBoxWADS.SelectedItems[i];
                 pwads[i] = pwad.Value;
             }
             Game.Run(pwads);
         }
 
         // Combobox helpers
-        private class ListComboContent
+        private class ListLabel
         {
-            public string Name;
-            public string Value;
+            private string name;
 
-            public ListComboContent(string name, string value)
+            public string Name
             {
-                this.Name = name;
-                this.Value = value;
+                get { return name; }
+                set { name = value; }
             }
 
             public override string ToString()
             {
-                return Name;
+                return name;
             }
         }
 
-        private class ListComboIntContent
-        {
-            public string Name;
-            public int Value;
+        private class ListContent : ListLabel
+        {            
+            private string content;
+            private int x;            
 
-            public ListComboIntContent(string name, int x)
+            public string Value
             {
-                this.Name = name;
-                this.Value = x;
+                get { return content; }
+                set { content = value; }
             }
 
-            public override string ToString()
+            public int Num
             {
-                return Name;
+                get { return x; }
+                set { x = value; }
             }
+
+            public ListContent(string label, string value)
+            {
+                this.Name = label;
+                content = value;
+            }
+
+            public ListContent(string label, int y)
+            {
+                this.Name = label;
+                x = y;
+            }            
         }
 
-        private class ListComboEpisodeContent
+        private class ListEpisode : ListLabel
         {
-            public string Name;
-            public int Episode;
-            public int Map;
+            private int episode;
+            private int map;
 
-            public ListComboEpisodeContent(string name, int e, int m)
+            public int Episode
             {
-                this.Name = name;
-                this.Episode = e;
-                this.Map = m;
+                get { return episode; }
+                set { episode = value; }
             }
 
-            public override string ToString()
+            public int Map
             {
-                return Name;
+                get { return map; }
+                set { map = value; }
+            }
+
+            public ListEpisode(string label, int x, int y)
+            {
+                this.Name = label;
+                episode = x;
+                map = y;
             }
         }
     }
