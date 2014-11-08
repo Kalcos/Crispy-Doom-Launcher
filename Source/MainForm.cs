@@ -17,7 +17,7 @@
 // Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -31,10 +31,14 @@ namespace ChocolateDoomLauncher
 {
     public partial class MainForm : Form
     {
+        // Variables
+        DataTable wads = new DataTable();
+        private string selectedIWAD;
+
         public MainForm()
         {
             InitializeComponent();
-        }        
+        }
 
         private void InitWADS(string path)
         {
@@ -59,39 +63,86 @@ namespace ChocolateDoomLauncher
                         string dehFile = Path.ChangeExtension(wad, ".deh");
                         if (File.Exists(dehFile))
                         {
-                            comboBoxIWAD.Items.Add(new ListContent("Chex Quest", wad));
+                            wads.Rows.Add("Chex Quest", wad, true);
                         }
                         break;
                     case "doom1.wad":
-                        comboBoxIWAD.Items.Add(new ListContent("Doom (Shareware)", wad));
+                        wads.Rows.Add("Doom (Shareware)", wad, true);
                         break;
                     case "doom.wad":
-                        comboBoxIWAD.Items.Add(new ListContent("The Ultimate Doom", wad));
+                        wads.Rows.Add("The Ultimate Doom", wad, true);
                         break;
                     case "doom2.wad":
-                        comboBoxIWAD.Items.Add(new ListContent("Doom 2: Hell on Earth", wad));
+                        wads.Rows.Add("Doom 2: Hell on Earth", wad, true);
                         break;
                     case "tnt.wad":
-                        comboBoxIWAD.Items.Add(new ListContent("Final Doom: TNT Evilution", wad));
+                        wads.Rows.Add("Final Doom: TNT Evilution", wad, true);
                         break;
                     case "plutonia.wad":
-                        comboBoxIWAD.Items.Add(new ListContent("Final Doom: The Plutonia Experiment", wad));
+                        wads.Rows.Add("Final Doom: The Plutonia Experiment", wad, true);
                         break;
                     case "heretic1.wad":
-                        comboBoxIWAD.Items.Add(new ListContent("Heretic (Shareware)", wad));
+                        wads.Rows.Add("Heretic (Shareware)", wad, true);
                         break;
                     case "heretic.wad":
-                        comboBoxIWAD.Items.Add(new ListContent("Heretic", wad));
+                        wads.Rows.Add("Heretic", wad, true);
+                        break;
+                    case "zdoom.wad":
                         break;
                     default:
-                        listBoxWADS.Items.Add(new ListContent(Path.GetFileNameWithoutExtension(wad), wad));
+                        wads.Rows.Add(Path.GetFileNameWithoutExtension(wad), wad, false);
                         break;
                 }
             }
 
-            if (comboBoxIWAD.Items.Count > 0 && comboBoxIWAD.SelectedItem == null)
+            // Sort datatable
+            DataView dataView = wads.DefaultView;
+            dataView.Sort = "File";
+            wads = dataView.ToTable();
+
+            if (comboBoxIWAD.SelectedItem != null)
             {
-                comboBoxIWAD.SelectedIndex = 0;
+                comboBoxIWAD.SelectedIndexChanged -= comboBoxIWAD_SelectedIndexChanged;
+                InitIWADCombobox();
+                comboBoxIWAD.SelectedIndexChanged += comboBoxIWAD_SelectedIndexChanged;
+            }
+            else
+            {
+                InitIWADCombobox();
+            }
+
+            InitWADSListBox();
+        }
+
+        private void InitIWADCombobox()
+        {
+            int i = 0;
+            int y = 0;
+            DataRow[] iwads = wads.Select("IWAD = true");
+
+            comboBoxIWAD.Items.Clear();
+            foreach (DataRow row in iwads)
+            {
+                comboBoxIWAD.Items.Add(new ListContent(row[0].ToString(), row[1].ToString()));
+
+                if (row[0].ToString() == selectedIWAD)
+                {
+                    i = y;
+                }
+                y++;
+            }
+
+            comboBoxIWAD.SelectedIndex = i;
+        }
+
+        private void InitWADSListBox()
+        {
+            DataRow[] pwads = wads.Select("IWAD = false");
+            listBoxWADS.Items.Clear();
+
+            foreach (DataRow row in pwads)
+            {
+                listBoxWADS.Items.Add(new ListContent(row[0].ToString(), row[1].ToString()));
             }
         }
 
@@ -173,8 +224,8 @@ namespace ChocolateDoomLauncher
             labelSkill.Enabled = enable;
             comboBoxSkill.Enabled = enable;
             labelLevel.Enabled = enable;
-            comboBoxLevel.Enabled = enable;                   
-            groupBoxOptions.Enabled = enable;           
+            comboBoxLevel.Enabled = enable;
+            groupBoxOptions.Enabled = enable;
         }
 
         private void EnableDemoControls()
@@ -189,7 +240,7 @@ namespace ChocolateDoomLauncher
             }
 
             textBoxDemoPath.Enabled = Game.Demo.Enabled;
-            buttonBrowseDemo.Enabled = Game.Demo.Enabled;                       
+            buttonBrowseDemo.Enabled = Game.Demo.Enabled;
             radioButtonRecordDemo.Enabled = Game.Demo.Enabled;
         }
 
@@ -212,7 +263,7 @@ namespace ChocolateDoomLauncher
                 else
                 {
                     EnableControls(true);
-                }                
+                }
             }
         }
 
@@ -221,11 +272,11 @@ namespace ChocolateDoomLauncher
             if (Game.Multiplayer.Enabled)
             {
                 if (Game.Multiplayer.Mode == 0)
-                {                    
+                {
                     EnableControls(false);
                 }
                 else
-                {                    
+                {
                     EnableControls(true);
                 }
 
@@ -239,7 +290,7 @@ namespace ChocolateDoomLauncher
                     labelTime.Enabled = false;
                     numericUpDownTime.Enabled = false;
                 }
-                
+
                 labelServerName.Enabled = Game.Multiplayer.Server;
                 textBoxServerName.Enabled = Game.Multiplayer.Server;
                 checkBoxPrivateServer.Enabled = Game.Multiplayer.Server;
@@ -270,7 +321,7 @@ namespace ChocolateDoomLauncher
                 }
             }
             else
-            {                
+            {
                 EnableControls(true);
                 labelTime.Enabled = false;
                 numericUpDownTime.Enabled = false;
@@ -286,7 +337,7 @@ namespace ChocolateDoomLauncher
             }
 
             InitDemoControls();
-        }        
+        }
 
         private void InitDemoControls()
         {
@@ -308,13 +359,18 @@ namespace ChocolateDoomLauncher
             {
                 radioButtonRecordDemo.Checked = true;
             }
-            radioButtonPlayDemo.CheckedChanged += radioButtonPlayDemo_CheckedChanged;            
-        }        
+            radioButtonPlayDemo.CheckedChanged += radioButtonPlayDemo_CheckedChanged;
+        }
 
         // Event handlers
         private void MainForm_Load(object sender, EventArgs e)
         {
+            wads.Columns.Add("Name", typeof(string));
+            wads.Columns.Add("File", typeof(string));
+            wads.Columns.Add("IWAD", typeof(bool));
+
             string path = Properties.Settings.Default.WADPath;
+            selectedIWAD = Properties.Settings.Default.SelectedIWAD;
             InitWADS(System.IO.Directory.GetCurrentDirectory());
             if (!string.IsNullOrEmpty(path))
             {
@@ -336,6 +392,7 @@ namespace ChocolateDoomLauncher
         {
             ListContent iwad = (ListContent)comboBoxIWAD.SelectedItem;
             Game.IWAD = iwad.Value;
+            selectedIWAD = iwad.Name;
             InitSkills();
             InitLevels();
         }
@@ -442,7 +499,7 @@ namespace ChocolateDoomLauncher
                 textBoxAddress.Enabled = true;
             }
         }
-            
+
         private void textBoxAddress_TextChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Address = textBoxAddress.Text;
@@ -452,7 +509,7 @@ namespace ChocolateDoomLauncher
         {
             Game.Turbo = checkBoxTurbo.Checked;
             numericUpDownTurbo.Enabled = Game.Turbo;
-        }        
+        }
 
         private void checkBoxNoMonsters_ChckedChanged(object sender, EventArgs e)
         {
@@ -501,14 +558,14 @@ namespace ChocolateDoomLauncher
         {
             Game.Demo.Enabled = checkBoxDemo.Checked;
             EnableDemoControls();
-            InitPlayButtonState();            
+            InitPlayButtonState();
         }
 
         private void radioButtonPlayDemo_CheckedChanged(object sender, EventArgs e)
         {
             textBoxDemoPath.Text = "";
             if (radioButtonPlayDemo.Checked)
-            {                
+            {
                 Game.Demo.Play = true;
             }
             else
@@ -557,6 +614,12 @@ namespace ChocolateDoomLauncher
 
         private void buttonRun_Clicked(object sender, EventArgs e)
         {
+            if (selectedIWAD != Properties.Settings.Default.SelectedIWAD)
+            {
+                Properties.Settings.Default.SelectedIWAD = selectedIWAD;
+                Properties.Settings.Default.Save();
+            }
+
             string[] pwads = new string[listBoxWADS.SelectedItems.Count];
             for (int i = 0; i <= listBoxWADS.SelectedItems.Count - 1; i++)
             {
@@ -584,9 +647,9 @@ namespace ChocolateDoomLauncher
         }
 
         private class ListContent : ListLabel
-        {            
+        {
             private string content;
-            private int x;            
+            private int x;
 
             public string Value
             {
@@ -610,7 +673,7 @@ namespace ChocolateDoomLauncher
             {
                 this.Name = label;
                 x = y;
-            }            
+            }
         }
 
         private class ListEpisode : ListLabel

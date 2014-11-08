@@ -34,5 +34,17 @@ namespace ChocolateDoomLauncher.Properties {
                 this["WADPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SelectedIWAD {
+            get {
+                return ((string)(this["SelectedIWAD"]));
+            }
+            set {
+                this["SelectedIWAD"] = value;
+            }
+        }
     }
 }
