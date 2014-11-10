@@ -85,8 +85,14 @@ namespace ChocolateDoomLauncher
                         wads.Rows.Add("Heretic (Shareware)", wad, true);
                         break;
                     case "heretic.wad":
-                        wads.Rows.Add("Heretic", wad, true);
+                        wads.Rows.Add("Heretic: Shadow of the Serpent Riders", wad, true);
                         break;
+					case "hexen":
+						wads.Rows.Add("Hexen: Beyond Heretic", wad, true);
+						break;
+					case "hexdd.wad":
+						wads.Rows.Add("Hexen: Deathkings of the Dark Citadel", wad, true);
+						break; 
                     case "zdoom.wad":
                         break;
                     default:

@@ -159,6 +159,16 @@ namespace ChocolateDoomLauncher
                         maps = 9;
                         bin = "chocolate-heretic.exe";
                         break;
+					case "hexen.wad"
+						episodes = 0;
+						maps = 40;
+						bin = "chocolate-hexen.exe";
+						break;
+					case "hexdd.wad"
+						episodes = 0;
+						maps = 60;
+						bin = "chocolate-hexen.exe";
+						break;
                     default:
                         episodes = 0;                        
                         maps = 32;
