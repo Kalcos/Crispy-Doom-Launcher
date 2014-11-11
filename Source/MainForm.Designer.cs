@@ -126,7 +126,7 @@ namespace ChocolateDoomLauncher
             // labelLevel
             // 
             this.labelLevel.AutoSize = true;
-            this.labelLevel.Location = new System.Drawing.Point(223, 52);
+            this.labelLevel.Location = new System.Drawing.Point(6, 49);
             this.labelLevel.Name = "labelLevel";
             this.labelLevel.Size = new System.Drawing.Size(36, 13);
             this.labelLevel.TabIndex = 4;
@@ -136,9 +136,9 @@ namespace ChocolateDoomLauncher
             // 
             this.comboBoxLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLevel.FormattingEnabled = true;
-            this.comboBoxLevel.Location = new System.Drawing.Point(265, 49);
+            this.comboBoxLevel.Location = new System.Drawing.Point(45, 46);
             this.comboBoxLevel.Name = "comboBoxLevel";
-            this.comboBoxLevel.Size = new System.Drawing.Size(52, 21);
+            this.comboBoxLevel.Size = new System.Drawing.Size(68, 21);
             this.comboBoxLevel.TabIndex = 5;
             this.comboBoxLevel.SelectedIndexChanged += new System.EventHandler(this.comboBoxLevel_SelectedIndexChanged);
             // 
@@ -146,7 +146,7 @@ namespace ChocolateDoomLauncher
             // 
             this.comboBoxSkill.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSkill.FormattingEnabled = true;
-            this.comboBoxSkill.Location = new System.Drawing.Point(51, 49);
+            this.comboBoxSkill.Location = new System.Drawing.Point(151, 46);
             this.comboBoxSkill.Name = "comboBoxSkill";
             this.comboBoxSkill.Size = new System.Drawing.Size(166, 21);
             this.comboBoxSkill.TabIndex = 4;
@@ -154,7 +154,7 @@ namespace ChocolateDoomLauncher
             // labelSkill
             // 
             this.labelSkill.AutoSize = true;
-            this.labelSkill.Location = new System.Drawing.Point(6, 52);
+            this.labelSkill.Location = new System.Drawing.Point(119, 49);
             this.labelSkill.Name = "labelSkill";
             this.labelSkill.Size = new System.Drawing.Size(29, 13);
             this.labelSkill.TabIndex = 4;
@@ -164,9 +164,9 @@ namespace ChocolateDoomLauncher
             // 
             this.comboBoxIWAD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxIWAD.FormattingEnabled = true;
-            this.comboBoxIWAD.Location = new System.Drawing.Point(51, 22);
+            this.comboBoxIWAD.Location = new System.Drawing.Point(45, 22);
             this.comboBoxIWAD.Name = "comboBoxIWAD";
-            this.comboBoxIWAD.Size = new System.Drawing.Size(266, 21);
+            this.comboBoxIWAD.Size = new System.Drawing.Size(272, 21);
             this.comboBoxIWAD.TabIndex = 4;
             this.comboBoxIWAD.SelectedIndexChanged += new System.EventHandler(this.comboBoxIWAD_SelectedIndexChanged);
             // 
@@ -526,7 +526,7 @@ namespace ChocolateDoomLauncher
             this.checkBoxMultiplayer.UseVisualStyleBackColor = true;
             this.checkBoxMultiplayer.CheckedChanged += new System.EventHandler(this.checkBoxMultiplayer_CheckedChanged);
             // 
-            // ChocDoomLauncherForm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -541,7 +541,7 @@ namespace ChocolateDoomLauncher
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "ChocDoomLauncherForm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chocalate Doom Launcher";
             this.Load += new System.EventHandler(this.MainForm_Load);
