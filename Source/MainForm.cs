@@ -200,6 +200,13 @@ namespace ChocolateDoomLauncher
                             break;
                     }
                     break;
+				case "strife1":
+					comboBoxSkill.Items.Add(new ListContent("Training", 1));
+					comboBoxSkill.Items.Add(new ListContent("Rookie", 2));
+					comboBoxSkill.Items.Add(new ListContent("Veteran", 3));
+					comboBoxSkill.Items.Add(new ListContent("Elite", 4));
+					comboBoxSkill.Items.Add(new ListContent("Bloodbath", 5));
+					break;
                 default:
                     comboBoxSkill.Items.Add(new ListContent("I'm too young to die", 1));
                     comboBoxSkill.Items.Add(new ListContent("Hey, not too rough", 2));
@@ -218,6 +225,7 @@ namespace ChocolateDoomLauncher
 
             if (game == "hexen")
             {
+				// Hexen player classes
                 labelLevel.Text = "Class:";
                 comboBoxLevel.Items.Add(new ListContent("fighter", 0));
                 comboBoxLevel.Items.Add(new ListContent("cleric", 1));
@@ -229,6 +237,7 @@ namespace ChocolateDoomLauncher
 
                 if (Game.Episodes != 0)
                 {
+					// Episodes and Maps
                     for (int e = 1; e <= Game.Episodes; e++)
                     {
                         for (int m = 1; m <= Game.Maps; m++)
@@ -239,6 +248,7 @@ namespace ChocolateDoomLauncher
                 }
                 else
                 {
+					// Maps
                     for (int m = 1; m <= Game.Maps; m++)
                     {
                         comboBoxLevel.Items.Add(m);
