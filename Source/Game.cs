@@ -35,6 +35,7 @@ namespace ChocolateDoomLauncher
         private static int map;
         private static int maps;
         private static int skill = 3;
+        private static int hexClass = 1;
         private static int turboSpeed;
         private static int demoMode = 1;
         private static int multiplayerMode = 0;
@@ -42,7 +43,7 @@ namespace ChocolateDoomLauncher
         private static int time = 0;
         private static bool demo = false;
         private static bool autoJoin = false;
-        private static bool multiplayer = false;      
+        private static bool multiplayer = false;
         private static bool titleScreen = false;
         private static bool turbo = false;
         private static bool noMonsters = false;
@@ -54,17 +55,17 @@ namespace ChocolateDoomLauncher
         private static string demoFile;
         private static string bin;
         private static string iwad;
-        private static string serverName;       
+        private static string serverName;
 
         public static bool NoMonsters
         {
             get { return noMonsters; }
-            set { noMonsters = value; }            
+            set { noMonsters = value; }
         }
 
         public static bool FastMonsters
         {
-            get { return fastMonsters; }            
+            get { return fastMonsters; }
             set { fastMonsters = value; }
         }
 
@@ -72,6 +73,12 @@ namespace ChocolateDoomLauncher
         {
             get { return respawnMonsters; }
             set { respawnMonsters = value; }
+        }
+
+        public static int Class
+        {
+            get { return hexClass; }
+            set { hexClass = value; }
         }
 
         public static int Episode
@@ -123,7 +130,7 @@ namespace ChocolateDoomLauncher
         {
             get { return turboSpeed; }
             set { turboSpeed = value; }
-        }        
+        }
 
         public static string IWAD
         {
@@ -140,50 +147,55 @@ namespace ChocolateDoomLauncher
                         bin = "chocolate-doom.exe";
                         break;
                     case "doom1.wad":
-                        episodes = 1;                        
+                        episodes = 1;
                         maps = 9;
-                        bin = "chocolate-doom.exe";                       
+                        bin = "chocolate-doom.exe";
                         break;
                     case "doom.wad":
-                        episodes = 4;                        
+                        episodes = 4;
                         maps = 9;
-                        bin = "chocolate-doom.exe";                       
-                        break;                 
+                        bin = "chocolate-doom.exe";
+                        break;
                     case "heretic1.wad":
                         episodes = 1;
                         maps = 9;
-                        bin = "chocolate-heretic.exe"; 
+                        bin = "chocolate-heretic.exe";
                         break;
                     case "heretic.wad":
                         episodes = 5;
                         maps = 9;
                         bin = "chocolate-heretic.exe";
                         break;
-					case "hexen.wad"
-						episodes = 0;
-						maps = 40;
-						bin = "chocolate-hexen.exe";
-						break;
-					case "hexdd.wad"
-						episodes = 0;
-						maps = 60;
-						bin = "chocolate-hexen.exe";
-						break;
+                    case "hexen.wad":
+                        episodes = 0;
+                        maps = 40;
+                        bin = "chocolate-hexen.exe";
+                        break;
+                    case "hexdd.wad":
+                        episodes = 0;
+                        maps = 40;
+                        bin = "chocolate-hexen.exe";
+                        break;
+                    case "strife1.wad":
+                        episodes = 0;
+                        maps = 31;
+                        bin = "chocolate-strife.exe";
+                        break;
                     default:
-                        episodes = 0;                        
+                        episodes = 0;
                         maps = 32;
                         bin = "chocolate-doom.exe";
                         break;
                 }
             }
         }
-        
+
         public static void Run(string[] pwads)
         {
             ArrayList doomArgs = new ArrayList();
 
             // Setup IWADs and PWADs
-            doomArgs.Add(string.Format("-iwad {0}", iwad));            
+            doomArgs.Add(string.Format("-iwad {0}", iwad));
             if (pwads.Length > 0)
             {
                 doomArgs.Add(string.Format("-file {0}", string.Join(" ", pwads)));
@@ -208,15 +220,23 @@ namespace ChocolateDoomLauncher
             // Level and skill args
             if (!titleScreen)
             {
-                if (episodes != 0)
+                if (bin == "chocolate-hexen.exe")
                 {
-                    doomArgs.Add(string.Format("-warp {0} {1}", episode, map));
+                    doomArgs.Add(string.Format("-class {0}", hexClass));
+                    doomArgs.Add(string.Format("-skill {0}", skill));
                 }
                 else
                 {
-                    doomArgs.Add(string.Format("-warp {0}", map));
+                    if (episodes != 0)
+                    {
+                        doomArgs.Add(string.Format("-warp {0} {1}", episode, map));
+                    }
+                    else
+                    {
+                        doomArgs.Add(string.Format("-warp {0}", map));
+                    }
+                    doomArgs.Add(string.Format("-skill {0}", skill));
                 }
-                doomArgs.Add(string.Format("-skill {0}", skill));
             }
 
             // Multiplayer args
@@ -226,7 +246,7 @@ namespace ChocolateDoomLauncher
                 {
                     doomArgs.Add("-server");
 
-                    if(!string.IsNullOrEmpty(serverName))
+                    if (!string.IsNullOrEmpty(serverName))
                     {
                         doomArgs.Add(string.Format("-servername {0}", serverName));
                     }
@@ -274,7 +294,7 @@ namespace ChocolateDoomLauncher
                     }
                 }
             }
-                        
+
             if (demo)
             {
                 // Demo args
@@ -311,8 +331,8 @@ namespace ChocolateDoomLauncher
                 {
                     doomArgs.Add(string.Format("-turbo {0}", turboSpeed));
                 }
-            }           
-            
+            }
+
             // Run process
             try
             {
@@ -326,8 +346,8 @@ namespace ChocolateDoomLauncher
             {
                 MessageBox.Show("Unable to run Chocolate Doom.", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
             }
-            
-            System.Environment.Exit(0);            
+
+            System.Environment.Exit(0);
         }
 
         public class Multiplayer
@@ -355,7 +375,7 @@ namespace ChocolateDoomLauncher
                     }
                 }
             }
-            
+
             public static bool Server
             {
                 get { return server; }

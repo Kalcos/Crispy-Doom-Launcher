@@ -33,6 +33,7 @@ namespace ChocolateDoomLauncher
     {
         // Variables
         DataTable wads = new DataTable();
+        private string game;
         private string selectedIWAD;
 
         public MainForm()
@@ -87,12 +88,12 @@ namespace ChocolateDoomLauncher
                     case "heretic.wad":
                         wads.Rows.Add("Heretic: Shadow of the Serpent Riders", wad, true);
                         break;
-					case "hexen":
-						wads.Rows.Add("Hexen: Beyond Heretic", wad, true);
-						break;
-					case "hexdd.wad":
-						wads.Rows.Add("Hexen: Deathkings of the Dark Citadel", wad, true);
-						break; 
+                    case "hexen.wad":
+                        wads.Rows.Add("Hexen: Beyond Heretic", wad, true);
+                        break;
+                    case "strife1.wad":
+                        wads.Rows.Add("Strife", wad, true);
+                        break;
                     case "zdoom.wad":
                         break;
                     default:
@@ -156,7 +157,7 @@ namespace ChocolateDoomLauncher
         {
             comboBoxSkill.SelectedIndexChanged -= new EventHandler(comboBoxSkill_SelectedIndexChanged);
             comboBoxSkill.Items.Clear();
-            switch (Path.GetFileNameWithoutExtension(Game.IWAD).ToLower())
+            switch (game)
             {
                 case "chex":
                     comboBoxSkill.Items.Add(new ListContent("Easy does it", 1));
@@ -173,6 +174,32 @@ namespace ChocolateDoomLauncher
                     comboBoxSkill.Items.Add(new ListContent("Thou art a smite-meister", 4));
                     comboBoxSkill.Items.Add(new ListContent("Black plague possesses thee", 5));
                     break;
+                case "hexen":
+                    switch (Game.Class)
+                    {
+                        case 0:
+                            comboBoxSkill.Items.Add(new ListContent("squire", 1));
+                            comboBoxSkill.Items.Add(new ListContent("knight", 2));
+                            comboBoxSkill.Items.Add(new ListContent("warrior", 3));
+                            comboBoxSkill.Items.Add(new ListContent("berserker", 4));
+                            comboBoxSkill.Items.Add(new ListContent("titan", 5));
+                            break;
+                        case 1:
+                            comboBoxSkill.Items.Add(new ListContent("altar boy", 1));
+                            comboBoxSkill.Items.Add(new ListContent("acolyte", 2));
+                            comboBoxSkill.Items.Add(new ListContent("priest", 3));
+                            comboBoxSkill.Items.Add(new ListContent("cardinal", 4));
+                            comboBoxSkill.Items.Add(new ListContent("pope", 5));
+                            break;
+                        case 2:
+                            comboBoxSkill.Items.Add(new ListContent("apprentice", 1));
+                            comboBoxSkill.Items.Add(new ListContent("enchanter", 2));
+                            comboBoxSkill.Items.Add(new ListContent("sorcerer", 3));
+                            comboBoxSkill.Items.Add(new ListContent("warlock", 4));
+                            comboBoxSkill.Items.Add(new ListContent("archmage", 5));
+                            break;
+                    }
+                    break;
                 default:
                     comboBoxSkill.Items.Add(new ListContent("I'm too young to die", 1));
                     comboBoxSkill.Items.Add(new ListContent("Hey, not too rough", 2));
@@ -188,23 +215,37 @@ namespace ChocolateDoomLauncher
         private void InitLevels()
         {
             comboBoxLevel.Items.Clear();
-            if (Game.Episodes != 0)
+
+            if (game == "hexen")
             {
-                for (int e = 1; e <= Game.Episodes; e++)
-                {
-                    for (int m = 1; m <= Game.Maps; m++)
-                    {
-                        comboBoxLevel.Items.Add(new ListEpisode(string.Format("E{0}M{1}", e, m), e, m));
-                    }
-                }
+                labelLevel.Text = "Class:";
+                comboBoxLevel.Items.Add(new ListContent("fighter", 0));
+                comboBoxLevel.Items.Add(new ListContent("cleric", 1));
+                comboBoxLevel.Items.Add(new ListContent("mage", 2));
             }
             else
             {
-                for (int m = 1; m <= Game.Maps; m++)
+                labelLevel.Text = "Level:";
+
+                if (Game.Episodes != 0)
                 {
-                    comboBoxLevel.Items.Add(m);
+                    for (int e = 1; e <= Game.Episodes; e++)
+                    {
+                        for (int m = 1; m <= Game.Maps; m++)
+                        {
+                            comboBoxLevel.Items.Add(new ListNumTable(string.Format("E{0}M{1}", e, m), e, m));
+                        }
+                    }
+                }
+                else
+                {
+                    for (int m = 1; m <= Game.Maps; m++)
+                    {
+                        comboBoxLevel.Items.Add(m);
+                    }
                 }
             }
+
             comboBoxLevel.SelectedIndex = 0;
 
             if (Game.Skill == 3)
@@ -399,24 +440,34 @@ namespace ChocolateDoomLauncher
             ListContent iwad = (ListContent)comboBoxIWAD.SelectedItem;
             Game.IWAD = iwad.Value;
             selectedIWAD = iwad.Name;
+            game = Path.GetFileNameWithoutExtension(Game.IWAD).ToLower();
             InitSkills();
             InitLevels();
         }
 
         private void comboBoxLevel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Game.Epsiodes != 0)
+            if (game == "hexen")
             {
-                ListEpisode level = (ListEpisode)comboBoxLevel.SelectedItem;
-                Game.Episode = level.Episode;
-                Game.Map = level.Map;
+                ListContent hexClass = (ListContent)comboBoxLevel.SelectedItem;
+                Game.Class = hexClass.Num;
+                InitSkills();
             }
             else
             {
-                Game.Map = Convert.ToInt16(comboBoxLevel.SelectedItem);
-            }
+                if (Game.Epsiodes != 0)
+                {
+                    ListNumTable level = (ListNumTable)comboBoxLevel.SelectedItem;
+                    Game.Episode = level.X;
+                    Game.Map = level.Y;
+                }
+                else
+                {
+                    Game.Map = Convert.ToInt16(comboBoxLevel.SelectedItem);
+                }
 
-            InitCheckBoxTitle();
+                InitCheckBoxTitle();
+            }
         }
 
         private void comboBoxSkill_SelectedIndexChanged(object sender, EventArgs e)
@@ -682,28 +733,28 @@ namespace ChocolateDoomLauncher
             }
         }
 
-        private class ListEpisode : ListLabel
+        private class ListNumTable : ListLabel
         {
-            private int episode;
-            private int map;
+            private int x;
+            private int y;
 
-            public int Episode
+            public int X
             {
-                get { return episode; }
-                set { episode = value; }
+                get { return x; }
+                set { x = value; }
             }
 
-            public int Map
+            public int Y
             {
-                get { return map; }
-                set { map = value; }
+                get { return y; }
+                set { y = value; }
             }
 
-            public ListEpisode(string label, int x, int y)
+            public ListNumTable(string label, int a, int b)
             {
                 this.Name = label;
-                episode = x;
-                map = y;
+                x = a;
+                y = b;
             }
         }
     }
