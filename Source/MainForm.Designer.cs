@@ -126,7 +126,7 @@ namespace ChocolateDoomLauncher
             // labelLevel
             // 
             this.labelLevel.AutoSize = true;
-            this.labelLevel.Location = new System.Drawing.Point(6, 49);
+            this.labelLevel.Location = new System.Drawing.Point(6, 50);
             this.labelLevel.Name = "labelLevel";
             this.labelLevel.Size = new System.Drawing.Size(36, 13);
             this.labelLevel.TabIndex = 4;
@@ -154,7 +154,7 @@ namespace ChocolateDoomLauncher
             // labelSkill
             // 
             this.labelSkill.AutoSize = true;
-            this.labelSkill.Location = new System.Drawing.Point(119, 49);
+            this.labelSkill.Location = new System.Drawing.Point(119, 50);
             this.labelSkill.Name = "labelSkill";
             this.labelSkill.Size = new System.Drawing.Size(29, 13);
             this.labelSkill.TabIndex = 4;
@@ -173,7 +173,7 @@ namespace ChocolateDoomLauncher
             // labelIWAD
             // 
             this.labelIWAD.AutoSize = true;
-            this.labelIWAD.Location = new System.Drawing.Point(6, 25);
+            this.labelIWAD.Location = new System.Drawing.Point(6, 26);
             this.labelIWAD.Name = "labelIWAD";
             this.labelIWAD.Size = new System.Drawing.Size(39, 13);
             this.labelIWAD.TabIndex = 4;
