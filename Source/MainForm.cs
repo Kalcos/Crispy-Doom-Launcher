@@ -94,6 +94,7 @@ namespace ChocolateDoomLauncher
                     case "strife1.wad":
                         wads.Rows.Add("Strife", wad, true);
                         break;
+                    case "voices.wad":
                     case "zdoom.wad":
                         break;
                     default:
@@ -139,7 +140,10 @@ namespace ChocolateDoomLauncher
                 y++;
             }
 
-            comboBoxIWAD.SelectedIndex = i;
+            if (comboBoxIWAD.Items.Count > 0)
+            {
+                comboBoxIWAD.SelectedIndex = i;
+            }            
         }
 
         private void InitWADSListBox()
@@ -200,13 +204,13 @@ namespace ChocolateDoomLauncher
                             break;
                     }
                     break;
-				case "strife1":
-					comboBoxSkill.Items.Add(new ListContent("Training", 1));
-					comboBoxSkill.Items.Add(new ListContent("Rookie", 2));
-					comboBoxSkill.Items.Add(new ListContent("Veteran", 3));
-					comboBoxSkill.Items.Add(new ListContent("Elite", 4));
-					comboBoxSkill.Items.Add(new ListContent("Bloodbath", 5));
-					break;
+                case "strife1":
+                    comboBoxSkill.Items.Add(new ListContent("Training", 1));
+                    comboBoxSkill.Items.Add(new ListContent("Rookie", 2));
+                    comboBoxSkill.Items.Add(new ListContent("Veteran", 3));
+                    comboBoxSkill.Items.Add(new ListContent("Elite", 4));
+                    comboBoxSkill.Items.Add(new ListContent("Bloodbath", 5));
+                    break;
                 default:
                     comboBoxSkill.Items.Add(new ListContent("I'm too young to die", 1));
                     comboBoxSkill.Items.Add(new ListContent("Hey, not too rough", 2));
@@ -225,7 +229,7 @@ namespace ChocolateDoomLauncher
 
             if (game == "hexen")
             {
-				// Hexen player classes
+                // Hexen player classes
                 labelLevel.Text = "Class:";
                 comboBoxLevel.Items.Add(new ListContent("fighter", 0));
                 comboBoxLevel.Items.Add(new ListContent("cleric", 1));
@@ -237,7 +241,7 @@ namespace ChocolateDoomLauncher
 
                 if (Game.Episodes != 0)
                 {
-					// Episodes and Maps
+                    // Episodes and Maps
                     for (int e = 1; e <= Game.Episodes; e++)
                     {
                         for (int m = 1; m <= Game.Maps; m++)
@@ -248,7 +252,7 @@ namespace ChocolateDoomLauncher
                 }
                 else
                 {
-					// Maps
+                    // Maps
                     for (int m = 1; m <= Game.Maps; m++)
                     {
                         comboBoxLevel.Items.Add(m);
@@ -256,7 +260,15 @@ namespace ChocolateDoomLauncher
                 }
             }
 
-            comboBoxLevel.SelectedIndex = 0;
+            if (game == "strife1")
+            {
+                // Strife starts at map 2
+                comboBoxLevel.SelectedIndex = 1;
+            }
+            else
+            {
+                comboBoxLevel.SelectedIndex = 0;
+            }            
 
             if (Game.Skill == 3)
             {
