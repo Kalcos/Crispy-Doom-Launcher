@@ -34,7 +34,7 @@ namespace ChocolateDoomLauncher
         private static int episodes;
         private static int map;
         private static int maps;
-        private static int skill = 3;
+        private static int skill;
         private static int hexClass = 1;
         private static int turboSpeed;
         private static int demoMode = 1;
@@ -144,41 +144,49 @@ namespace ChocolateDoomLauncher
                     case "chex.wad":
                         episodes = 1;
                         maps = 5;
+                        skill = 3;
                         bin = "chocolate-doom.exe";
                         break;
                     case "doom1.wad":
                         episodes = 1;
                         maps = 9;
+                        skill = 3;
                         bin = "chocolate-doom.exe";
                         break;
                     case "doom.wad":
                         episodes = 4;
                         maps = 9;
+                        skill = 3;
                         bin = "chocolate-doom.exe";
                         break;
                     case "heretic1.wad":
                         episodes = 1;
                         maps = 9;
+                        skill = 3;
                         bin = "chocolate-heretic.exe";
                         break;
                     case "heretic.wad":
                         episodes = 5;
                         maps = 9;
+                        skill = 3;
                         bin = "chocolate-heretic.exe";
                         break;
                     case "hexen.wad":
                         episodes = 0;
                         maps = 40;
+                        skill = 3;
                         bin = "chocolate-hexen.exe";
                         break;
                     case "hexdd.wad":
                         episodes = 0;
                         maps = 40;
+                        skill = 3;
                         bin = "chocolate-hexen.exe";
                         break;
                     case "strife1.wad":
                         episodes = 0;
                         maps = 31;
+                        skill = 2;
                         bin = "chocolate-strife.exe";
                         break;
                     default:
@@ -331,6 +339,13 @@ namespace ChocolateDoomLauncher
                 {
                     doomArgs.Add(string.Format("-turbo {0}", turboSpeed));
                 }
+            }
+
+            // Determine if host operating system is Unix based / like
+            int x = Convert.ToInt16(Environment.OSVersion.Platform);
+            if (x == 4 || x == 6 || x == 128)
+            {
+                bin = Path.GetFileNameWithoutExtension(bin);
             }
 
             // Run process
