@@ -138,7 +138,7 @@ namespace ChocolateDoomLauncher
             this.comboBoxLevel.FormattingEnabled = true;
             this.comboBoxLevel.Location = new System.Drawing.Point(45, 46);
             this.comboBoxLevel.Name = "comboBoxLevel";
-            this.comboBoxLevel.Size = new System.Drawing.Size(68, 21);
+            this.comboBoxLevel.Size = new System.Drawing.Size(52, 21);
             this.comboBoxLevel.TabIndex = 5;
             this.comboBoxLevel.SelectedIndexChanged += new System.EventHandler(this.comboBoxLevel_SelectedIndexChanged);
             // 
