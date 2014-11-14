@@ -144,54 +144,62 @@ namespace ChocolateDoomLauncher
                     case "chex.wad":
                         episodes = 1;
                         maps = 5;
+                        episode = 1;
+                        map = 1;
                         skill = 3;
                         bin = "chocolate-doom.exe";
                         break;
                     case "doom1.wad":
                         episodes = 1;
                         maps = 9;
+                        episode = 1;
+                        map = 1;
                         skill = 3;
                         bin = "chocolate-doom.exe";
                         break;
                     case "doom.wad":
                         episodes = 4;
                         maps = 9;
+                        episode = 1;
+                        map = 1;
                         skill = 3;
                         bin = "chocolate-doom.exe";
                         break;
                     case "heretic1.wad":
                         episodes = 1;
                         maps = 9;
+                        episode = 1;
+                        map = 1;
                         skill = 3;
                         bin = "chocolate-heretic.exe";
                         break;
                     case "heretic.wad":
                         episodes = 5;
                         maps = 9;
+                        episode = 1;
+                        map = 1;
                         skill = 3;
                         bin = "chocolate-heretic.exe";
                         break;
                     case "hexen.wad":
                         episodes = 0;
                         maps = 40;
+                        hexClass = 0;
                         skill = 3;
                         bin = "chocolate-hexen.exe";
-                        break;
-                    case "hexdd.wad":
-                        episodes = 0;
-                        maps = 40;
-                        skill = 3;
-                        bin = "chocolate-hexen.exe";
-                        break;
+                        break;                    
                     case "strife1.wad":
                         episodes = 0;
                         maps = 31;
+                        map = 2;
                         skill = 2;
                         bin = "chocolate-strife.exe";
                         break;
                     default:
                         episodes = 0;
                         maps = 32;
+                        map = 1;
+                        skill = 3;
                         bin = "chocolate-doom.exe";
                         break;
                 }
@@ -359,7 +367,8 @@ namespace ChocolateDoomLauncher
             }
             catch (Exception)
             {
-                MessageBox.Show("Unable to run Chocolate Doom.", "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Exclamation);
+                string msg = string.Format("Unable to run {0}", bin);
+                MessageBox.Show(msg, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
 
             System.Environment.Exit(0);
