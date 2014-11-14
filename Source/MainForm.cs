@@ -102,7 +102,7 @@ namespace ChocolateDoomLauncher
                         break;
                 }
             }
-
+            
             // Sort datatable
             DataView dataView = wads.DefaultView;
             dataView.Sort = "File";
@@ -143,7 +143,7 @@ namespace ChocolateDoomLauncher
             if (comboBoxIWAD.Items.Count > 0)
             {
                 comboBoxIWAD.SelectedIndex = i;
-            }            
+            }
         }
 
         private void InitWADSListBox()
@@ -161,6 +161,7 @@ namespace ChocolateDoomLauncher
         {
             comboBoxSkill.SelectedIndexChanged -= new EventHandler(comboBoxSkill_SelectedIndexChanged);
             comboBoxSkill.Items.Clear();
+
             switch (game)
             {
                 case "chex":
@@ -219,12 +220,18 @@ namespace ChocolateDoomLauncher
                     comboBoxSkill.Items.Add(new ListContent("Nightmare!", 5));
                     break;
             }
-            comboBoxSkill.SelectedIndex = Game.Skill - 1;
+
+            if (comboBoxSkill.Items.Count > 0)
+            {
+                comboBoxSkill.SelectedIndex = Game.Skill - 1;
+            }
+            
             comboBoxSkill.SelectedIndexChanged += new EventHandler(comboBoxSkill_SelectedIndexChanged);
         }
 
         private void InitLevels()
         {
+            comboBoxLevel.SelectedIndexChanged -= comboBoxLevel_SelectedIndexChanged;
             comboBoxLevel.Items.Clear();
 
             if (game == "hexen")
@@ -260,27 +267,37 @@ namespace ChocolateDoomLauncher
                 }
             }
 
-            if (game == "strife1")
+            if (comboBoxLevel.Items.Count > 0)
             {
-                // Strife starts at map 2
-                comboBoxLevel.SelectedIndex = 1;
+                if (game == "hexen")
+                {
+                    comboBoxLevel.SelectedIndex = Game.Class;
+                }
+                else
+                {
+                    comboBoxLevel.SelectedIndex = Game.Map - 1;
+                }
             }
-            else
-            {
-                comboBoxLevel.SelectedIndex = 0;
-            }            
 
-            if (Game.Skill == 3)
-            {
-                checkBoxTitleScreen.Enabled = true;
-            }
+            comboBoxLevel.SelectedIndexChanged += new EventHandler(comboBoxLevel_SelectedIndexChanged);
         }
 
         private void InitCheckBoxTitle()
         {
-            if (!Game.Demo.Enabled && !Game.Multiplayer.Enabled && Game.Skill == 3 && Game.Map == 1 && Game.Episode == 1 | Game.Episode == 0)
+            if (!Game.Multiplayer.Enabled && !Game.Demo.Enabled)
             {
-                checkBoxTitleScreen.Enabled = true;
+                if (Game.Map == 1 && Game.Skill == 3 && Game.Episode == 1 | Game.Episode == 0)
+                {
+                    checkBoxTitleScreen.Enabled = true;
+                }
+                else if (game == "strife1" && Game.Skill == 2 && Game.Map == 2)
+                {
+                    checkBoxTitleScreen.Enabled = true;
+                }
+                else
+                {
+                    checkBoxTitleScreen.Enabled = false;
+                }
             }
             else
             {
@@ -465,6 +482,7 @@ namespace ChocolateDoomLauncher
             game = Path.GetFileNameWithoutExtension(Game.IWAD).ToLower();
             InitSkills();
             InitLevels();
+            InitCheckBoxTitle();
         }
 
         private void comboBoxLevel_SelectedIndexChanged(object sender, EventArgs e)
@@ -705,6 +723,7 @@ namespace ChocolateDoomLauncher
                 ListContent pwad = (ListContent)listBoxWADS.SelectedItems[i];
                 pwads[i] = pwad.Value;
             }
+
             Game.Run(pwads);
         }
 
