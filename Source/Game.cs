@@ -187,7 +187,7 @@ namespace ChocolateDoomLauncher
                         hexClass = 0;
                         skill = 3;
                         bin = "chocolate-hexen.exe";
-                        break;                    
+                        break;
                     case "strife1.wad":
                         episodes = 0;
                         maps = 31;

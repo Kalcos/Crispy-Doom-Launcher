@@ -92,7 +92,7 @@ namespace ChocolateDoomLauncher
                         wads.Rows.Add("Hexen: Beyond Heretic", wad, true);
                         break;
                     case "strife1.wad":
-                        wads.Rows.Add("Strife", wad, true);
+                        wads.Rows.Add("Strife: Quest for the Sigil", wad, true);
                         break;
                     case "voices.wad":
                     case "zdoom.wad":
@@ -102,7 +102,7 @@ namespace ChocolateDoomLauncher
                         break;
                 }
             }
-            
+
             // Sort datatable
             DataView dataView = wads.DefaultView;
             dataView.Sort = "File";
@@ -225,7 +225,7 @@ namespace ChocolateDoomLauncher
             {
                 comboBoxSkill.SelectedIndex = Game.Skill - 1;
             }
-            
+
             comboBoxSkill.SelectedIndexChanged += new EventHandler(comboBoxSkill_SelectedIndexChanged);
         }
 

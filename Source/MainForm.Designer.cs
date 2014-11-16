@@ -136,7 +136,7 @@ namespace ChocolateDoomLauncher
             // 
             this.comboBoxLevel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxLevel.FormattingEnabled = true;
-            this.comboBoxLevel.Location = new System.Drawing.Point(45, 46);
+            this.comboBoxLevel.Location = new System.Drawing.Point(51, 46);
             this.comboBoxLevel.Name = "comboBoxLevel";
             this.comboBoxLevel.Size = new System.Drawing.Size(52, 21);
             this.comboBoxLevel.TabIndex = 5;
@@ -164,9 +164,9 @@ namespace ChocolateDoomLauncher
             // 
             this.comboBoxIWAD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxIWAD.FormattingEnabled = true;
-            this.comboBoxIWAD.Location = new System.Drawing.Point(45, 22);
+            this.comboBoxIWAD.Location = new System.Drawing.Point(51, 22);
             this.comboBoxIWAD.Name = "comboBoxIWAD";
-            this.comboBoxIWAD.Size = new System.Drawing.Size(272, 21);
+            this.comboBoxIWAD.Size = new System.Drawing.Size(266, 21);
             this.comboBoxIWAD.TabIndex = 4;
             this.comboBoxIWAD.SelectedIndexChanged += new System.EventHandler(this.comboBoxIWAD_SelectedIndexChanged);
             // 
