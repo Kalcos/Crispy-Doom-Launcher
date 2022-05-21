@@ -1,6 +1,6 @@
 Chocolate Doom Launcher
 =======================
-An unofficial graphical user interface front-end for Chocolate Doom, that has been inspired by Death Manager
+An unofficial graphical user interface front-end for Crispy Doom, that has been inspired by Death Manager
 and the Doom 95 launcher.
 
 ![Screenshot](https://raw.githubusercontent.com/mylesthaiss/Chocolate-Doom-Launcher/master/Screenshots/Start_Up.png)
@@ -28,12 +28,12 @@ Features
 
 Requirements
 ============
-- Chocolate Doom binaries for Doom, Heretic, Hexen, etc.
+- Crispy Doom binaries for Doom, Heretic, Hexen, etc.
 - A IWAD file such as "doom1.wad" or "doom2.wad".
 - Microsoft .NET Runtime.
 
 Install
 =======
-Extract the downloaded file and then copy "chocolate-doom-launcher.exe" onto on a folder that contains 
+Extract the downloaded file and then copy "crispy-doom-launcher.exe" onto on a folder that contains 
 Chocolate Doom executables. At start-up the launcher will always check for IWADs on its current folder, 
 however the launcher will use search for WADs on the last opened folder as well.
