@@ -82,6 +82,9 @@ namespace ChocolateDoomLauncher
                     case "plutonia.wad":
                         wads.Rows.Add("Final Doom: The Plutonia Experiment", wad, true);
                         break;
+                    case "hacx.wad":
+                        wads.Rows.Add("HACX: Twitch 'n Kill", wad, true);
+                        break;
                     case "heretic1.wad":
                         wads.Rows.Add("Heretic (Shareware)", wad, true);
                         break;
