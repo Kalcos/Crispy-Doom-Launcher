@@ -8,3 +8,7 @@
 - NEW: Last played game is selected at start up.
 - Rearranged Level and Skill combo boxes.
 - Minor UI improvements and fixes.
+
+--- 1.0 (Crispy Doom Launcher)
+- Project renamed to Crispy Doom
+- NEW: Hacx Iwad support.
