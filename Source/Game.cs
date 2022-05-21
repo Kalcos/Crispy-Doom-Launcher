@@ -147,7 +147,7 @@ namespace ChocolateDoomLauncher
                         episode = 1;
                         map = 1;
                         skill = 3;
-                        bin = "chocolate-doom.exe";
+                        bin = "crispy-doom.exe";
                         break;
                     case "doom1.wad":
                         episodes = 1;
@@ -155,7 +155,7 @@ namespace ChocolateDoomLauncher
                         episode = 1;
                         map = 1;
                         skill = 3;
-                        bin = "chocolate-doom.exe";
+                        bin = "crispy-doom.exe";
                         break;
                     case "doom.wad":
                         episodes = 4;
@@ -163,7 +163,7 @@ namespace ChocolateDoomLauncher
                         episode = 1;
                         map = 1;
                         skill = 3;
-                        bin = "chocolate-doom.exe";
+                        bin = "crispy-doom.exe";
                         break;
                     case "heretic1.wad":
                         episodes = 1;
@@ -171,7 +171,7 @@ namespace ChocolateDoomLauncher
                         episode = 1;
                         map = 1;
                         skill = 3;
-                        bin = "chocolate-heretic.exe";
+                        bin = "crispy-heretic.exe";
                         break;
                     case "heretic.wad":
                         episodes = 5;
@@ -179,28 +179,28 @@ namespace ChocolateDoomLauncher
                         episode = 1;
                         map = 1;
                         skill = 3;
-                        bin = "chocolate-heretic.exe";
+                        bin = "crispy-heretic.exe";
                         break;
                     case "hexen.wad":
                         episodes = 0;
                         maps = 40;
                         hexClass = 0;
                         skill = 3;
-                        bin = "chocolate-hexen.exe";
+                        bin = "crispy-hexen.exe";
                         break;
                     case "strife1.wad":
                         episodes = 0;
                         maps = 31;
                         map = 2;
                         skill = 2;
-                        bin = "chocolate-strife.exe";
+                        bin = "crispy-strife.exe";
                         break;
                     default:
                         episodes = 0;
                         maps = 32;
                         map = 1;
                         skill = 3;
-                        bin = "chocolate-doom.exe";
+                        bin = "crispy-doom.exe";
                         break;
                 }
             }
