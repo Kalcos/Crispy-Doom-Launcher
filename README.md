@@ -1,4 +1,4 @@
-Chocolate Doom Launcher
+Crispy Doom Launcher
 =======================
 An unofficial graphical user interface front-end for Crispy Doom, that has been inspired by Death Manager
 and the Doom 95 launcher.
@@ -35,5 +35,5 @@ Requirements
 Install
 =======
 Extract the downloaded file and then copy "crispy-doom-launcher.exe" onto on a folder that contains 
-Chocolate Doom executables. At start-up the launcher will always check for IWADs on its current folder, 
+Crispy Doom executables. At start-up the launcher will always check for IWADs on its current folder, 
 however the launcher will use search for WADs on the last opened folder as well.
