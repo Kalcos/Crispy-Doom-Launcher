@@ -25,7 +25,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace ChocolateDoomLauncher
+namespace CrispyDoomLauncher
 {
     class Game
     {
@@ -236,7 +236,7 @@ namespace ChocolateDoomLauncher
             // Level and skill args
             if (!titleScreen)
             {
-                if (bin == "chocolate-hexen.exe")
+                if (bin == "crispy-hexen.exe")
                 {
                     doomArgs.Add(string.Format("-class {0}", hexClass));
                     doomArgs.Add(string.Format("-skill {0}", skill));

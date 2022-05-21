@@ -27,7 +27,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-namespace ChocolateDoomLauncher
+namespace CrispyDoomLauncher
 {
     public partial class MainForm : Form
     {
@@ -208,13 +208,20 @@ namespace ChocolateDoomLauncher
                             break;
                     }
                     break;
+                case "hacx":
+                    comboBoxSkill.Items.Add(new ListContent("Please don't shoot!", 1));
+                    comboBoxSkill.Items.Add(new ListContent("Arrg, I need Health!", 2));
+                    comboBoxSkill.Items.Add(new ListContent("Let's rip them apart!", 3));
+                    comboBoxSkill.Items.Add(new ListContent("I am inmmortal", 4));
+                    comboBoxSkill.Items.Add(new ListContent("Insanity!", 5));
+                    break;
                 case "strife1":
                     comboBoxSkill.Items.Add(new ListContent("Training", 1));
                     comboBoxSkill.Items.Add(new ListContent("Rookie", 2));
                     comboBoxSkill.Items.Add(new ListContent("Veteran", 3));
                     comboBoxSkill.Items.Add(new ListContent("Elite", 4));
                     comboBoxSkill.Items.Add(new ListContent("Bloodbath", 5));
-                    break;
+                    break;  
                 default:
                     comboBoxSkill.Items.Add(new ListContent("I'm too young to die", 1));
                     comboBoxSkill.Items.Add(new ListContent("Hey, not too rough", 2));
