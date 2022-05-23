@@ -73,6 +73,12 @@ namespace CrispyDoomLauncher
                     case "doom.wad":
                         wads.Rows.Add("The Ultimate Doom", wad, true);
                         break;
+                    case "freedoom1.wad":
+                        wads.Rows.Add("Freedoom: Phase 1", wad, true);
+                        break;
+                    case "freedoom2.wad":
+                        wads.Rows.Add("Freedoom: Phase 2", wad, true);
+                        break;
                     case "doom2.wad":
                         wads.Rows.Add("Doom 2: Hell on Earth", wad, true);
                         break;
@@ -215,6 +221,20 @@ namespace CrispyDoomLauncher
                     comboBoxSkill.Items.Add(new ListContent("I am inmmortal", 4));
                     comboBoxSkill.Items.Add(new ListContent("Insanity!", 5));
                     break;
+                case "freedoom1":
+                    comboBoxSkill.Items.Add(new ListContent("Please don't kill me!", 1));
+                    comboBoxSkill.Items.Add(new ListContent("Will this hurt?", 2));
+                    comboBoxSkill.Items.Add(new ListContent("Bring on the pain.", 3));
+                    comboBoxSkill.Items.Add(new ListContent("Extreme carnage.", 4));
+                    comboBoxSkill.Items.Add(new ListContent("Mayhem!", 5));
+                    break;
+                case "freedoom2":
+                    comboBoxSkill.Items.Add(new ListContent("Please don't kill me!", 1));
+                    comboBoxSkill.Items.Add(new ListContent("Will this hurt?", 2));
+                    comboBoxSkill.Items.Add(new ListContent("Bring on the pain.", 3));
+                    comboBoxSkill.Items.Add(new ListContent("Extreme carnage.", 4));
+                    comboBoxSkill.Items.Add(new ListContent("Mayhem!", 5));
+                    break;
                 case "strife1":
                     comboBoxSkill.Items.Add(new ListContent("Training", 1));
                     comboBoxSkill.Items.Add(new ListContent("Rookie", 2));
@@ -263,7 +283,14 @@ namespace CrispyDoomLauncher
                     {
                         for (int m = 1; m <= Game.Maps; m++)
                         {
-                            comboBoxLevel.Items.Add(new ListNumTable(string.Format("E{0}M{1}", e, m), e, m));
+                        	if (game == "freedoom1")
+                        	{
+                        		comboBoxLevel.Items.Add(new ListNumTable(string.Format("C{0}M{1}", e, m), e, m));
+                        	}
+                        	else
+                        	{
+                        		comboBoxLevel.Items.Add(new ListNumTable(string.Format("E{0}M{1}", e, m), e, m));
+                        	}
                         }
                     }
                 }

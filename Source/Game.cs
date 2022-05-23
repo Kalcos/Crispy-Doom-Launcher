@@ -165,6 +165,14 @@ namespace CrispyDoomLauncher
                         skill = 3;
                         bin = "crispy-doom.exe";
                         break;
+                    case "freedoom1.wad":
+                        episodes = 4;
+                        maps = 9;
+                        episode = 1;
+                        map = 1;
+                        skill = 3;
+                        bin = "crispy-doom.exe";
+                        break;
                     case "heretic1.wad":
                         episodes = 1;
                         maps = 9;

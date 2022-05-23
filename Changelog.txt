@@ -10,5 +10,8 @@
 - Minor UI improvements and fixes.
 
 --- 1.0 (Crispy Doom Launcher)
-- Project renamed to Crispy Doom
+- Project renamed to Crispy Doom Launcher
 - NEW: Hacx Iwad support.
+
+--- 1.1
+NEW: Freedoom 1 & 2 support.
