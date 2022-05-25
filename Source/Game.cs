@@ -56,7 +56,8 @@ namespace CrispyDoomLauncher
         private static string bin;
         private static string iwad;
         private static string serverName;
-
+        public static string ExtraArgs;
+        
         public static bool NoMonsters
         {
             get { return noMonsters; }
@@ -220,10 +221,12 @@ namespace CrispyDoomLauncher
 
             // Setup IWADs and PWADs
             doomArgs.Add(string.Format("-iwad {0}", iwad));
+            doomArgs.Add(ExtraArgs);
+
             if (pwads.Length > 0)
             {
                 doomArgs.Add(string.Format("-file {0}", string.Join(" ", pwads)));
-
+                	
                 // Detect and use Dehacked files based on given PWAD filenames
                 ArrayList dehFiles = new ArrayList();
                 foreach (string wad in pwads)

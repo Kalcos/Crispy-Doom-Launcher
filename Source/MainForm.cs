@@ -35,6 +35,7 @@ namespace CrispyDoomLauncher
         DataTable wads = new DataTable();
         private string game;
         private string selectedIWAD;
+        
 
         public MainForm()
         {
@@ -349,6 +350,8 @@ namespace CrispyDoomLauncher
             labelLevel.Enabled = enable;
             comboBoxLevel.Enabled = enable;
             groupBoxOptions.Enabled = enable;
+            labelExtraParms.Enabled = enable;
+            textBoxExtraParms.Enabled =enable;
         }
 
         private void EnableDemoControls()
@@ -637,6 +640,11 @@ namespace CrispyDoomLauncher
         private void textBoxAddress_TextChanged(object sender, EventArgs e)
         {
             Game.Multiplayer.Address = textBoxAddress.Text;
+        }
+        
+        void TextBoxExtraParmsTextChanged(object sender, EventArgs e)
+        {
+        	Game.ExtraArgs = textBoxExtraParms.Text;
         }
 
         private void checkBoxTurbo_CheckedChanged(object sender, EventArgs e)
