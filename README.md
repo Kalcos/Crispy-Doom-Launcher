@@ -3,7 +3,7 @@ Crispy Doom Launcher
 An unofficial graphical user interface front-end for Crispy Doom, that has been inspired by Death Manager
 and the Doom 95 launcher.
 
-![Screenshot](https://raw.githubusercontent.com/mylesthaiss/Chocolate-Doom-Launcher/master/Screenshots/Start_Up.png)
+![Screenshot](https://raw.githubusercontent.com/Kalcos/Crispy-Doom-Launcher/tree/master/Screenshots/Start_Up.png)
 
 Features
 ========
@@ -18,13 +18,13 @@ Features
 - Option to load to title screen.
 - Add WAD files from folders.
 
-![Screenshot](https://raw.githubusercontent.com/mylesthaiss/Chocolate-Doom-Launcher/master/Screenshots/Deathmatch.png)
+![Screenshot](https://raw.githubusercontent.com/Kalcos/Crispy-Doom-Launcher/tree/master/Screenshots/Deathmatch.png)
 
-![Screenshot](https://raw.githubusercontent.com/mylesthaiss/Chocolate-Doom-Launcher/master/Screenshots/Mods.png)
+![Screenshot](https://raw.githubusercontent.com/Kalcos/Crispy-Doom-Launcher/tree/master/Screenshots/Mods.png)
 
-![Screenshot](https://raw.githubusercontent.com/mylesthaiss/Chocolate-Doom-Launcher/master/Screenshots/Record_Demo.png)
+![Screenshot](https://raw.githubusercontent.com/Kalcos/Crispy-Doom-Launcher/tree/master/Screenshots/Record_Demo.png)
 
-![Screenshot](https://raw.githubusercontent.com/mylesthaiss/Chocolate-Doom-Launcher/master/Screenshots/Hexen.png)
+![Screenshot](https://raw.githubusercontent.com/Kalcos/Crispy-Doom-Launcher/tree/master/Screenshots/Hexen.png)
 
 Requirements
 ============
