@@ -565,6 +565,8 @@ namespace CrispyDoomLauncher
                 EnableControls(false);
                 groupBoxMultiplayer.Enabled = false;
                 groupBoxDemo.Enabled = false;
+                textBoxExtraParms.Enabled = true;
+                labelExtraParms.Enabled = true;
             }
             else
             {
