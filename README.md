@@ -14,7 +14,7 @@ Features
 - Select multiple PWADs.
 - Detect and apply DeHackEd patches, based on giving PWAD file name.
 - Save / Open .lmp files to play or record demos.
-- Chex Quest, Heretic, Hexen and Strife support.
+- Freedoom, Hacx, Chex Quest, Heretic, Hexen and Strife support.
 - Option to load to title screen.
 - Add WAD files from folders.
 
