@@ -56,7 +56,13 @@ namespace CrispyDoomLauncher
         private static string bin;
         private static string iwad;
         private static string serverName;
-        public static string ExtraArgs;
+        private static string _ExtraArgs;
+        
+        public static string ExtraArgs
+        {
+        	get { return _ExtraArgs; }
+        	set { _ExtraArgs = value; }
+        }
         
         public static bool NoMonsters
         {
@@ -218,10 +224,16 @@ namespace CrispyDoomLauncher
         public static void Run(string[] pwads)
         {
             ArrayList doomArgs = new ArrayList();
-
+            
+            //Detect Extra commandline args
+            
+			if (!string.IsNullOrEmpty(_ExtraArgs))
+            {
+            	doomArgs.Add(string.Format(" {0}", _ExtraArgs));
+            }
+            
             // Setup IWADs and PWADs
             doomArgs.Add(string.Format("-iwad {0}", iwad));
-            doomArgs.Add(ExtraArgs);
 
             if (pwads.Length > 0)
             {

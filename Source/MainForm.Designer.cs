@@ -113,22 +113,22 @@ namespace CrispyDoomLauncher
         	this.groupBoxGame.Margin = new System.Windows.Forms.Padding(4);
         	this.groupBoxGame.Name = "groupBoxGame";
         	this.groupBoxGame.Padding = new System.Windows.Forms.Padding(4);
-        	this.groupBoxGame.Size = new System.Drawing.Size(437, 152);
+        	this.groupBoxGame.Size = new System.Drawing.Size(437, 167);
         	this.groupBoxGame.TabIndex = 0;
         	this.groupBoxGame.TabStop = false;
         	this.groupBoxGame.Text = "Game";
         	// 
         	// textBoxExtraParms
         	// 
-        	this.textBoxExtraParms.Location = new System.Drawing.Point(108, 122);
+        	this.textBoxExtraParms.Location = new System.Drawing.Point(108, 125);
         	this.textBoxExtraParms.Name = "textBoxExtraParms";
         	this.textBoxExtraParms.Size = new System.Drawing.Size(313, 22);
         	this.textBoxExtraParms.TabIndex = 8;
-        	this.textBoxExtraParms.TextChanged += new System.EventHandler(this.TextBoxExtraParmsTextChanged);
+        	this.textBoxExtraParms.TextChanged += new System.EventHandler(this.TextBoxExtraParms_TextChanged);
         	// 
         	// labelExtraParms
         	// 
-        	this.labelExtraParms.Location = new System.Drawing.Point(12, 125);
+        	this.labelExtraParms.Location = new System.Drawing.Point(12, 128);
         	this.labelExtraParms.Name = "labelExtraParms";
         	this.labelExtraParms.Size = new System.Drawing.Size(102, 23);
         	this.labelExtraParms.TabIndex = 7;
@@ -215,7 +215,7 @@ namespace CrispyDoomLauncher
         	this.groupBoxOptions.Controls.Add(this.checkBoxRespawnMonsters);
         	this.groupBoxOptions.Controls.Add(this.checkBoxFastMonsters);
         	this.groupBoxOptions.Controls.Add(this.checkBoxNoMonsters);
-        	this.groupBoxOptions.Location = new System.Drawing.Point(16, 312);
+        	this.groupBoxOptions.Location = new System.Drawing.Point(16, 327);
         	this.groupBoxOptions.Margin = new System.Windows.Forms.Padding(4);
         	this.groupBoxOptions.Name = "groupBoxOptions";
         	this.groupBoxOptions.Padding = new System.Windows.Forms.Padding(4);
@@ -294,7 +294,7 @@ namespace CrispyDoomLauncher
         	// 
         	// buttonRun
         	// 
-        	this.buttonRun.Location = new System.Drawing.Point(597, 522);
+        	this.buttonRun.Location = new System.Drawing.Point(597, 537);
         	this.buttonRun.Margin = new System.Windows.Forms.Padding(4);
         	this.buttonRun.Name = "buttonRun";
         	this.buttonRun.Size = new System.Drawing.Size(100, 28);
@@ -305,7 +305,7 @@ namespace CrispyDoomLauncher
         	// 
         	// Exit
         	// 
-        	this.Exit.Location = new System.Drawing.Point(16, 522);
+        	this.Exit.Location = new System.Drawing.Point(16, 537);
         	this.Exit.Margin = new System.Windows.Forms.Padding(4);
         	this.Exit.Name = "Exit";
         	this.Exit.Size = new System.Drawing.Size(100, 28);
@@ -321,7 +321,7 @@ namespace CrispyDoomLauncher
         	this.groupBoxDemo.Controls.Add(this.buttonBrowseDemo);
         	this.groupBoxDemo.Controls.Add(this.textBoxDemoPath);
         	this.groupBoxDemo.Controls.Add(this.checkBoxDemo);
-        	this.groupBoxDemo.Location = new System.Drawing.Point(16, 412);
+        	this.groupBoxDemo.Location = new System.Drawing.Point(16, 427);
         	this.groupBoxDemo.Margin = new System.Windows.Forms.Padding(4);
         	this.groupBoxDemo.Name = "groupBoxDemo";
         	this.groupBoxDemo.Padding = new System.Windows.Forms.Padding(4);
@@ -395,14 +395,14 @@ namespace CrispyDoomLauncher
         	this.groupBoxWADs.Margin = new System.Windows.Forms.Padding(4);
         	this.groupBoxWADs.Name = "groupBoxWADs";
         	this.groupBoxWADs.Padding = new System.Windows.Forms.Padding(4);
-        	this.groupBoxWADs.Size = new System.Drawing.Size(233, 489);
+        	this.groupBoxWADs.Size = new System.Drawing.Size(233, 504);
         	this.groupBoxWADs.TabIndex = 5;
         	this.groupBoxWADs.TabStop = false;
         	this.groupBoxWADs.Text = "WADs";
         	// 
         	// buttonAddWADs
         	// 
-        	this.buttonAddWADs.Location = new System.Drawing.Point(8, 450);
+        	this.buttonAddWADs.Location = new System.Drawing.Point(8, 462);
         	this.buttonAddWADs.Margin = new System.Windows.Forms.Padding(4);
         	this.buttonAddWADs.Name = "buttonAddWADs";
         	this.buttonAddWADs.Size = new System.Drawing.Size(59, 28);
@@ -419,7 +419,7 @@ namespace CrispyDoomLauncher
         	this.listBoxWADS.Margin = new System.Windows.Forms.Padding(4);
         	this.listBoxWADS.Name = "listBoxWADS";
         	this.listBoxWADS.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
-        	this.listBoxWADS.Size = new System.Drawing.Size(209, 404);
+        	this.listBoxWADS.Size = new System.Drawing.Size(209, 420);
         	this.listBoxWADS.TabIndex = 0;
         	// 
         	// groupBoxMultiplayer
@@ -437,7 +437,7 @@ namespace CrispyDoomLauncher
         	this.groupBoxMultiplayer.Controls.Add(this.labelTime);
         	this.groupBoxMultiplayer.Controls.Add(this.comboBoxMultiplayerModes);
         	this.groupBoxMultiplayer.Controls.Add(this.checkBoxMultiplayer);
-        	this.groupBoxMultiplayer.Location = new System.Drawing.Point(16, 175);
+        	this.groupBoxMultiplayer.Location = new System.Drawing.Point(16, 190);
         	this.groupBoxMultiplayer.Margin = new System.Windows.Forms.Padding(4);
         	this.groupBoxMultiplayer.Name = "groupBoxMultiplayer";
         	this.groupBoxMultiplayer.Padding = new System.Windows.Forms.Padding(4);
@@ -595,7 +595,7 @@ namespace CrispyDoomLauncher
         	// 
         	this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
         	this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        	this.ClientSize = new System.Drawing.Size(713, 566);
+        	this.ClientSize = new System.Drawing.Size(713, 578);
         	this.Controls.Add(this.groupBoxMultiplayer);
         	this.Controls.Add(this.groupBoxWADs);
         	this.Controls.Add(this.groupBoxDemo);

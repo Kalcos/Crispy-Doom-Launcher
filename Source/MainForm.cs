@@ -642,7 +642,7 @@ namespace CrispyDoomLauncher
             Game.Multiplayer.Address = textBoxAddress.Text;
         }
         
-        void TextBoxExtraParmsTextChanged(object sender, EventArgs e)
+        private void TextBoxExtraParms_TextChanged(object sender, EventArgs e)
         {
         	Game.ExtraArgs = textBoxExtraParms.Text;
         }
