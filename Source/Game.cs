@@ -210,6 +210,13 @@ namespace CrispyDoomLauncher
                         skill = 2;
                         bin = "crispy-strife.exe";
                         break;
+                       case "hacx.wad":
+                        episodes = 0;
+                        maps = 20;
+                        map = 1;
+                        skill = 3;
+                        bin = "crispy-doom.exe";
+                        break;
                     default:
                         episodes = 0;
                         maps = 32;

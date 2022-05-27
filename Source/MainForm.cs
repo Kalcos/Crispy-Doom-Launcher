@@ -29,17 +29,19 @@ using System.IO;
 
 namespace CrispyDoomLauncher
 {
-    public partial class MainForm : Form
+	public partial class MainForm : Form
     {
         // Variables
         DataTable wads = new DataTable();
         private string game;
         private string selectedIWAD;
         
+        
 
         public MainForm()
         {
             InitializeComponent();
+            var Settings = new IniFile("Settings.ini");
         }
 
         private void InitWADS(string path)
@@ -495,8 +497,10 @@ namespace CrispyDoomLauncher
             wads.Columns.Add("File", typeof(string));
             wads.Columns.Add("IWAD", typeof(bool));
 
-            string path = Properties.Settings.Default.WADPath;
-            selectedIWAD = Properties.Settings.Default.SelectedIWAD;
+            var Settings = new IniFile("Settings.ini");
+            string path = Settings.Read("Wad Path");
+            selectedIWAD = Settings.Read("IWAD");
+            
             InitWADS(System.IO.Directory.GetCurrentDirectory());
             if (!string.IsNullOrEmpty(path))
             {
@@ -677,9 +681,9 @@ namespace CrispyDoomLauncher
 
             if (folder.ShowDialog() == DialogResult.OK)
             {
-                InitWADS(folder.SelectedPath);
-                Properties.Settings.Default.WADPath = folder.SelectedPath;
-                Properties.Settings.Default.Save();
+                var Settings = new IniFile("Settings.ini");
+            	InitWADS(folder.SelectedPath);
+                Settings.Write("Wad Path",folder.SelectedPath);
             }
         }
 
@@ -758,11 +762,8 @@ namespace CrispyDoomLauncher
 
         private void buttonRun_Clicked(object sender, EventArgs e)
         {
-            if (selectedIWAD != Properties.Settings.Default.SelectedIWAD)
-            {
-                Properties.Settings.Default.SelectedIWAD = selectedIWAD;
-                Properties.Settings.Default.Save();
-            }
+            var Settings = new IniFile("Settings.ini");
+            Settings.Write("IWAD",selectedIWAD);
 
             string[] pwads = new string[listBoxWADS.SelectedItems.Count];
             for (int i = 0; i <= listBoxWADS.SelectedItems.Count - 1; i++)
